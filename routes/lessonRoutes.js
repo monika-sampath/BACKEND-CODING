@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-const authenticateJWT = require("../middlewares/authMiddleware"); // Import JWT middleware
+
 const lessonController = require("../controllers/lessonController"); // Import lesson controller
 
 // POST route to create a new lesson
@@ -16,9 +16,9 @@ router.get("/lessons", lessonController.getAllLessons);
 router.get("/lesson/:id", lessonController.getLessonById);
 
 // PUT route to update a lesson by ID
-router.put("/lesson/:id", authenticateJWT, lessonController.updateLesson);
+router.put("/lesson/:id", lessonController.updateLesson);
 
 // DELETE route to delete a lesson by ID
-router.delete("/lesson/:id", authenticateJWT, lessonController.deleteLesson);
+router.delete("/lesson/:id", lessonController.deleteLesson);
 
 module.exports = router;
