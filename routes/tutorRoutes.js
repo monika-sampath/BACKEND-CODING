@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const authenticateJWT = require("../middlewares/authMiddleware"); // Import authentication middleware
+const authenticateJWT = require("../Middlewares/authMiddleware"); // Import authentication middleware
 const tutorController = require("../controllers/tutorController"); // Import the tutor controller
 
 // Example route for creating a tutor
