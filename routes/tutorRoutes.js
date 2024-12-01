@@ -13,7 +13,7 @@ router.get("/tutors", tutorController.getAllTutors); // Get all tutors (public r
 router.get("/tutor/:id", tutorController.getTutorById); // Get a specific tutor by ID (public route)
 
 // Example route for updating tutor details
-router.put("/tutor/:id", authenticateJWT, tutorController.updateTutor); // Update tutor (protected route)
+router.put("/tutor/:id", tutorController.updateTutor); // Update tutor (protected route)
 
 // Example route for deleting a tutor
 router.delete("/tutor/:id", tutorController.deleteTutor); // Delete tutor (protected route)
