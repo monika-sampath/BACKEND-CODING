@@ -42,6 +42,7 @@ const login = async (req, res) => {
     res.json({
       token,
       user: {
+        username: user.username,
         email: user.email,
         role: user.role, // Include role information
       },
