@@ -3,41 +3,44 @@ const mongoose = require("mongoose");
 
 const tutorSchema = new mongoose.Schema(
   {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Reference to the User model
+    name: {
+      type: String,
       required: true,
     },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId, // Refers to the user ID in the `user` collection
+      required: false,
+    },
     subjects: {
-      type: [String],
-    //   required: true,
+      type: [String], // Array of subjects
+      required: true,
     },
     bio: {
       type: String,
-      required: true,
+      required: false, // Optional
     },
     qualifications: {
-      type: [String],
-      required: true,
+      type: [String], // Array of qualifications
+      required: false,
     },
     experience: {
       type: String,
-      required: true,
+      required: false,
     },
     hourlyRate: {
-      type: Number,
-      required: true,
+      type: Number, // Numerical field for hourly rate
+      required: false,
     },
     rating: {
-      type: Number,
-      default: 0,
+      type: Number, // Numerical field for rating
+      min: 0,
+      max: 5,
+      required: false,
     },
-    reviews: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Review",
-      },
-    ],
+    reviews: {
+      type: [String], // Array of strings for reviews
+      required: false,
+    },
   },
   { timestamps: true }
 );
