@@ -4,24 +4,26 @@ const Tutor = require("../models/Tutor"); // Import the Tutor model
 const createTutor = async (req, res) => {
   try {
     const {
+      name,
       userId,
-      qualifications,
-      expertise,
-      experience,
-      pricePerHour,
-      ratings,
+      subjects,
       bio,
+      qualifications,
+      experience,
+      ratings,
       hourlyRate,
+      reviews,
     } = req.body;
     const tutor = new Tutor({
+      name,
       userId,
-      qualifications,
-      expertise,
-      experience,
-      pricePerHour,
-      ratings,
+      subjects,
       bio,
+      qualifications,
+      experience,
+      ratings,
       hourlyRate,
+      reviews,
     });
 
     await tutor.save();
