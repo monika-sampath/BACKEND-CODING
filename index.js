@@ -11,6 +11,7 @@ const lessonRoutes = require("./routes/lessonRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const authRoutes = require("./routes/authRoutes");
+const courseRoutes = require("./routes/courseRoutes"); // Adjust the path
 
 // Load environment variables
 dotenv.config();
@@ -31,7 +32,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api", tutorRoutes);
 app.use("/api", lessonRoutes);
 app.use("/api/payment", paymentRoutes);
-app.use("/api", profileRoutes);
+app.use("/api/courses", courseRoutes);
+
+// Routes
+app.use("/api/users", profileRoutes);
 
 // Default route
 app.get("/", (req, res) => {
