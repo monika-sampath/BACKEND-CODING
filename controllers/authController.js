@@ -59,4 +59,45 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-password"); // Exclude passwords
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { username, email, role } = req.body;
+
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { username, email, role },
+      { new: true, runValidators: true } // Return the updated document
+    ).select("-password"); // Exclude password
+
+    if (!updatedUser) return res.status(404).json({ msg: "User not found" });
+
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedUser = await User.findByIdAndDelete(id);
+    if (!deletedUser) return res.status(404).json({ msg: "User not found" });
+
+    res.json({ msg: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ msg: "Server error" });
+  }
+};
+
+module.exports = { register, login, getAllUsers, updateUser, deleteUser };
